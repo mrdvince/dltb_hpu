@@ -1,5 +1,4 @@
 import logging
-from multiprocessing import dummy
 import os
 from pathlib import Path
 
@@ -14,12 +13,9 @@ logger = logging.getLogger(__name__)
 class ConvertModel:
     def __init__(self,cfg, ckpt_path, model_type="cls"):
         logger.info(f"Loading model from {ckpt_path}")
-        if model_type == "unet":
-            self.model = UNETModel.load_from_checkpoint(ckpt_path)
-            self.dummy_input = torch.randn(1, 3, cfg.data.lung_mask_dim, cfg.data.lung_mask_dim)
-        else:
-            self.model = CLSModel.load_from_checkpoint(ckpt_path)
-            self.dummy_input = torch.randn(1, 3, 224, 224)
+        self.model = UNETModel.load_from_checkpoint(ckpt_path)
+        self.dummy_input = torch.randn(1, 3, cfg.data.lung_mask_dim, cfg.data.lung_mask_dim)
+    
 
     def to_onnx(self, save_path):
         torch.onnx.export(

@@ -23,7 +23,7 @@ training:
   limit_val_batches: 1.0
   save_dir: saved
   deterministic: True
-  device: gpu
+  device: hpu
   num_instances: 1
   bucket_cap_mb: 125
   cores: 8

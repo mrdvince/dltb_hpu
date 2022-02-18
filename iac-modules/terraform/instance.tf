@@ -5,7 +5,7 @@ resource "aws_key_pair" "habana" {
 
 resource "aws_instance" "habana" {
   key_name      = aws_key_pair.habana.key_name
-  ami           = "ami-01dd6afa1f047660d" # Deep Learning AMI Habana TensorFlow 2.5.0 SynapseAI 0.15.4 (Ubuntu 18.04) 20220105 
+  ami           = "ami-092e7d01d03078ccf" # Deep Learning AMI Habana TensorFlow 2.5.0 SynapseAI 0.15.4 (Ubuntu 18.04) 20220105 
   instance_type = "dl1.24xlarge"
 
   user_data = file(var.USER_DATA)

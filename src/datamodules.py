@@ -1,14 +1,12 @@
 import os
-from typing import Optional
 
 import albumentations as A
 import hydra
 import pytorch_lightning as pl
 from albumentations.pytorch.transforms import ToTensorV2
 from torch.utils.data import DataLoader, random_split
-from torchvision import datasets, transforms
 
-from datasets import CLSDataset, UNETDataset
+from datasets import UNETDataset
 from utils import get_data
 
 
@@ -68,54 +66,6 @@ class UNETDataModule(pl.LightningDataModule):
             batch_size=self.bs,
             pin_memory=True,
             num_workers=os.cpu_count(),
-        )
-
-
-class ClassifierDataModule(pl.LightningDataModule):
-    def __init__(self, config):
-        super(ClassifierDataModule, self).__init__()
-        self.transforms = transforms.Compose(
-            [
-                transforms.RandomResizedCrop(224),
-                transforms.ToTensor(),
-                transforms.Normalize(
-                    mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
-                ),
-            ]
-        )
-        self.config = config
-        self.project_root = hydra.utils.get_original_cwd() + "/"
-        self.data_dir = self.project_root + self.config.data.data_dir + "/"
-        self.cxr_dir = self.project_root + config.data.cxr_dir
-
-    def prepare_data(self) -> None:
-        if not os.path.exists(self.project_root + self.config.data.lung_mask_raw_dir):
-            get_data()
-
-    def setup(self, stage: Optional[str] = None) -> None:
-        # load data
-        dataset = CLSDataset(
-            cxr_dir=self.cxr_dir, transforms=self.transforms
-        )
-        train_samples = int(len(dataset) * 0.8)
-        self.train_data, self.val_data = random_split(
-            dataset, [train_samples, len(dataset) - train_samples]
-        )
-    def train_dataloader(self):
-        return DataLoader(
-            self.train_data,
-            batch_size=self.config.data.cl_batch_size,
-            shuffle=True,
-            num_workers=os.cpu_count(),
-            pin_memory=True,
-        )
-
-    def val_dataloader(self):
-        return DataLoader(
-            self.val_data,
-            batch_size=self.config.data.cl_batch_size,
-            num_workers=os.cpu_count(),
-            pin_memory=True,
         )
 
 
