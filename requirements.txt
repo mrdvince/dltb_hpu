@@ -1,0 +1,14 @@
+pytorch-lightning
+scikit-learn
+hydra-core
+hydra-colorlog
+omegaconf
+onnxruntime
+onnxruntime
+uvicorn
+python-multipart
+fastapi
+wandb
+opendatasets
+dvc
+pandas
