@@ -9,7 +9,3 @@ variable "PRIVATE_KEY" {
 variable "USER" {
   default = "ubuntu"
 }
-
-variable "USER_DATA" {
-  default = "user_data.sh"
-}
