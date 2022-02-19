@@ -25,6 +25,10 @@ training:
   num_instances: 1
   bucket_cap_mb: 125
   cores: 8
+  patience: 100
+  ckpt_every: 10
+  run_lazy_mode: False
+  skip_first_n_eval: 2
 
 defaults:
   - override hydra/job_logging: colorlog
