@@ -70,9 +70,3 @@ class UNET(nn.Module):
             x = self.ups[idx + 1](x)
 
         return self.conv_final(x)
-
-
-if __name__ == "__main__":
-    x = torch.randn((3, 1, 224, 224))
-    model = UNET(1, 1)
-    print(model(x).shape, x.shape)

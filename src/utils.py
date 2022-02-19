@@ -52,5 +52,23 @@ def get_data(
     )
 
 
+def set_env_params(run_lazy_mode, hpus_per_node=1):
+    os.environ["MAX_WAIT_ATTEMPTS"] = "50"
+    os.environ["PT_HPU_ENABLE_SYNC_OUTPUT_HOST"] = "false"
+    if run_lazy_mode:
+        os.environ["PT_HPU_LAZY_MODE"] = "1"
+    if hpus_per_node > 1:
+        os.environ["PL_TORCH_DISTRIBUTED_BACKEND"] = "hccl"
+
+
+def load_hpu_library():
+    from habana_frameworks.torch.utils.library_loader import load_habana_module
+
+    load_habana_module()
+    import habana_frameworks.torch.core
+    import habana_frameworks.torch.core.hccl
+    import habana_frameworks.torch.core as htcore
+
+
 if __name__ == "__main__":
     get_data()

@@ -67,18 +67,3 @@ class UNETDataModule(pl.LightningDataModule):
             pin_memory=True,
             num_workers=os.cpu_count(),
         )
-
-
-@hydra.main(config_path="configs", config_name="config")
-def main(cfg):
-    train_loader = UNETDataModule(cfg)
-    train_loader.prepare_data()
-    train_loader.setup()
-    train_loader = train_loader.train_dataloader()
-    data = next(iter(train_loader))
-    loader_images, loader_masks = data
-    print(loader_images.shape, loader_masks.shape)
-
-
-if __name__ == "__main__":
-    main()
