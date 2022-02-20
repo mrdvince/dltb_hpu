@@ -55,6 +55,7 @@ def get_data(
         mask_dir=mask_dir,
     )
 
+
 # https://github.com/HabanaAI/Model-References/blob/master/PyTorch/computer_vision/segmentation/Unet/utils/utils.py
 def set_env_params(run_lazy_mode, hpus_per_node=1):
     os.environ["MAX_WAIT_ATTEMPTS"] = "50"
