@@ -50,8 +50,8 @@ class UNETModel(pl.LightningModule):
 
             wandb.log(
                 {
-                    "Valdation/loss": loss,
-                    "Valdation/Dice Score": self.dice_score,
+                    "Validation/loss": loss,
+                    "Validation/dice dcore": self.dice_score,
                     "logits": wandb.Histogram(pred.detach().cpu().numpy()),
                     "batch": batch_idx,
                     "Images": wandb.Image("images.png"),
