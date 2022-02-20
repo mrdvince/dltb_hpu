@@ -1,0 +1,29 @@
+model:
+  num_classes: 2
+  lr: 0.001
+data:
+  lung_mask_ds_url: https://www.kaggle.com/kmader/pulmonary-chest-xray-abnormalities
+  lm_batch_size: 16
+  cl_batch_size: 64
+  data_dir: data
+  exports_dir: saved/exports
+  cxr_dir: data/proc_seg/cxr_pngs
+  mask_dir: data/proc_seg/mask_pngs
+  lung_mask_raw_dir: data/pulmonary-chest-xray-abnormalities/Montgomery/MontgomerySet/CXR_png
+  lung_mask_dim: 256
+training:
+  max_epochs: 50
+  log_every_n_steps: 4
+  limit_train_batches: 1.0
+  limit_val_batches: 1.0
+  save_dir: saved
+  deterministic: true
+  device: hpu
+  num_instances: 1
+  bucket_cap_mb: 125
+  cores: 1
+  patience: 100
+  ckpt_every: 10
+  run_lazy_mode: false
+  skip_first_n_eval: 2
+  run_name: single_core_run

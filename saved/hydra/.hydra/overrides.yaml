@@ -1,0 +1,2 @@
+- training.cores=1
+- training.run_name=single_core_run
