@@ -2,8 +2,8 @@ import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 import torchvision
-
 import wandb
+
 from unet import UNET
 from utils import get_device, mark_step, permute_params
 
@@ -48,10 +48,17 @@ class UNETModel(pl.LightningModule):
             torchvision.utils.save_image(preds, "pred.png")
             torchvision.utils.save_image(mask, "mask.png")
 
-            wandb.log({"Images": wandb.Image("images.png")})
-            wandb.log({"Predictions": wandb.Image("pred.png")})
-            wandb.log({"Masks": wandb.Image("mask.png")})
-
+            wandb.log(
+                {
+                    "Valdation/loss": loss,
+                    "Valdation/Dice Score": self.dice_score,
+                    "logits": wandb.Histogram(pred.detach().cpu().numpy()),
+                    "batch": batch_idx,
+                    "Images": wandb.Image("images.png"),
+                    "Masks": wandb.Image("mask.png"),
+                    "Predictions": wandb.Image("pred.png"),
+                }
+            )
         return {"mask": mask, "preds": preds}
 
     def configure_optimizers(self):

@@ -12,7 +12,7 @@ data:
   lung_mask_raw_dir: data/pulmonary-chest-xray-abnormalities/Montgomery/MontgomerySet/CXR_png
   lung_mask_dim: 256
 training:
-  max_epochs: 50
+  max_epochs: 150
   log_every_n_steps: 4
   limit_train_batches: 1.0
   limit_val_batches: 1.0

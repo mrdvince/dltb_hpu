@@ -119,9 +119,10 @@ hydra:
     task:
     - training.cores=1
     - training.run_name=single_core_run
+    - training.max_epochs=150
   job:
     name: train
-    override_dirname: training.cores=1,training.run_name=single_core_run
+    override_dirname: training.cores=1,training.max_epochs=150,training.run_name=single_core_run
     id: ???
     num: ???
     config_name: config

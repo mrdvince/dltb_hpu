@@ -1,11 +1,11 @@
 import hydra
 import pytorch_lightning as pl
 import torch
+import wandb
 from pytorch_lightning.callbacks import EarlyStopping
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.plugins import DDPPlugin
 
-import wandb
 from datamodules import UNETDataModule
 from model import UNETModel
 from utils import PeriodicCheckpoint, load_hpu_library, set_env_params
@@ -70,6 +70,6 @@ def main(cfg):
 
 
 if __name__ == "__main__":
-    seed = 69420
+    seed = 420
     pl.seed_everything(seed)
     main()
