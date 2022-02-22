@@ -1,6 +1,6 @@
 ![](images/mask_image.png)
 
-# dtlb on hpu
+# dltb on hpu
 Lung segmentantion using Montgomery dataset from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4256233/
 
 Basically training a UNET on Habana Gaudi AI processor(s).
