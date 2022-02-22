@@ -12,3 +12,5 @@ wandb
 opendatasets
 dvc
 pandas
+opencv-python
+albumentations
