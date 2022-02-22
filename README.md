@@ -19,7 +19,7 @@ Kaggle dataset link: https://www.kaggle.com/kmader/pulmonary-chest-xray-abnormal
 2. Clone the repository.
 
 ```bash
-git clone https://github.com/mrdvince/hpu
+git clone https://github.com/mrdvince/dltb_hpu
 ```
 3. Install requirements
 uncomment out pytorch ligtning from requirements since it's already included in the container.
@@ -51,7 +51,7 @@ This projects W&B log https://wandb.ai/droid/dltb_hpu
 </p>
 
 
-Change directory to hpu, then run:
+Change directory to dltb_hpu, then run:
 
 ```bash
 python src/train.py training.max_epochs=150 training.cores=1
