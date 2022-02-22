@@ -28,13 +28,22 @@ uncomment out pytorch ligtning from requirements since it's already included in 
 pip install -r requirements.txt
 ```
 
-### Wandb (optional)
+## Wandb (optional)
 Create a W&B account https://wandb.ai/, used for logging and tracking training metrics.
 This is optional, if this is not necessary just select option 3 when it comes up.
 
 ![](images/wandb.png)
 
 > Use [DVC](https://dvc.org/) to store models to other storages(preferably S3) since you might exhaust the free 100GB storage provided by W&B (found out the hard way 😂)
+
+### W&B Run
+This projects W&B log https://wandb.ai/droid/dltb_hpu
+
+### Masks and model predictions
+![](images/wandb_masks_preds.png)
+
+### Validation loss and dice score
+![](images/val_loss_dice.png)
 
 # Training
 <p align="center">
@@ -50,7 +59,7 @@ python src/train.py training.max_epochs=150 training.cores=1
 
 > Using 1 HPU core because i couldn't figure out how to run with all the 8 cores without getting all sorts of errors 😂😂
 
-This extra args are courtesy of [hydra](https://github.com/facebookresearch/hydra), for a full list of overrides add the the -h flag
+The extra args are courtesy of [hydra](https://github.com/facebookresearch/hydra), for a full list of overrides add the the -h flag
 
 ```bash
 (.env9) ➜  hpu git:(master) ✗ python src/train.py -h
@@ -59,8 +68,6 @@ train is powered by Hydra.
 
 == Configuration groups ==
 Compose your configuration from those groups (group=option)
-
-
 
 == Config ==
 Override anything in the config (foo.bar=value)
@@ -94,7 +101,6 @@ training:
   run_lazy_mode: false
   skip_first_n_eval: 2
   run_name: single_core_run
-
 
 Powered by Hydra (https://hydra.cc)
 Use --hydra-help to view Hydra specific help
