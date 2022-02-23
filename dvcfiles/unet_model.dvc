@@ -1,0 +1,5 @@
+wdir: ../saved/exports
+outs:
+- md5: 9098374432e0a596597ab7f176896546
+  size: 124223971
+  path: unet_best.onnx

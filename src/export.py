@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class ConvertModel:
-    def __init__(self, cfg, ckpt_path, model_type="cls"):
+    def __init__(self, cfg, ckpt_path):
         logger.info(f"Loading model from {ckpt_path}")
         self.model = UNETModel.load_from_checkpoint(ckpt_path)
         self.dummy_input = torch.randn(
@@ -44,9 +44,8 @@ def main(cfg):
 
     Path(save_path).mkdir(parents=True, exist_ok=True)
 
-    cm = ConvertModel(cfg, ckpt_path=ckpt_path, model_type=cfg.model.type)
+    cm = ConvertModel(cfg, ckpt_path=ckpt_path)
     cm.to_onnx(os.path.join(save_path, "model_best_checkpoint.onnx"))
-    cm.to_torchscript(os.path.join(save_path, "model_best_checkpoint.pt"))
 
 
 if __name__ == "__main__":
