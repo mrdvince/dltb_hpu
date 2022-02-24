@@ -1,14 +1,12 @@
 import os
 import shutil
-from copy import deepcopy
 from glob import glob
 from pathlib import Path
 
 import opendatasets as od
-import torch
 from PIL import Image, ImageChops
-from pytorch_lightning.callbacks import ModelCheckpoint
 from tqdm.auto import tqdm
+
 
 # https://github.com/HabanaAI/Model-References/blob/master/PyTorch/computer_vision/segmentation/Unet/utils/utils.py
 def set_env_params(run_lazy_mode, hpus_per_node=1):
