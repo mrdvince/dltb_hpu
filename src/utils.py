@@ -60,7 +60,6 @@ def get_data(
 def set_env_params(run_lazy_mode, hpus_per_node=1):
     os.environ["MAX_WAIT_ATTEMPTS"] = "50"
     os.environ["PT_HPU_ENABLE_SYNC_OUTPUT_HOST"] = "false"
-    os.environ["LOCAL_RANK"] = "1"
     if run_lazy_mode:
         os.environ["PT_HPU_LAZY_MODE"] = "1"
     if hpus_per_node > 1:
