@@ -42,5 +42,5 @@ def get_predictions(request: Request, file: UploadFile = File(...)) -> Any:
 
     return {
         "mask_url": url + "/media/mask_" + filename,
-        "segmentation_url": url + "media/weighted_" + filename,
+        "segmentation_url": url + "/media/weighted_" + filename,
     }
